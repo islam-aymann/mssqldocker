@@ -9,3 +9,13 @@ services:
       - "5000:5000"
   redis:
     image: "redis:alpine"
+
+  db:
+    image: islamusayman95/mssqldocker:latest
+    ports:
+      - "1433:1433"
+    environment:
+      ACCEPT_EULA: Y
+      MSSQL_PID: Express
+      SA_PASSWORD: "yourStrong(!)Password"
+      DB_NAME: demo
