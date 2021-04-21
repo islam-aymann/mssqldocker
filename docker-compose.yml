@@ -1,21 +1,23 @@
 version: "3.9"
+
 services:
   web:
     build: .
-    environment:
-      FLASK_ENV: development
-      FLASK_DEBUG: 1
+    command: python manage.py runserver 0.0.0.0:8000
+    image: medications_service
+    depends_on:
+      - db
     ports:
-      - "5000:5000"
-  redis:
-    image: "redis:alpine"
+      - 8000:8000
+    volumes:
+      - .:/opt/project
+    env_file:
+      - ./.env/.dev
 
   db:
     image: islamusayman95/mssqldocker:latest
     ports:
       - "1433:1433"
-    environment:
-      ACCEPT_EULA: Y
-      MSSQL_PID: Express
-      SA_PASSWORD: "yourStrong(!)Password"
-      DB_NAME: demo
+
+    env_file:
+      - ./.env/.dev
