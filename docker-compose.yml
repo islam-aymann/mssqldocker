@@ -4,8 +4,16 @@ services:
     build: .
     ports:
       - "1433:1433"
+    volumes:
+      - mssqldata:/var/opt/mssql
     environment:
       ACCEPT_EULA: Y
       MSSQL_PID: Express
       SA_PASSWORD: "yourStrong(!)Password"
-      DB_NAME: demo
+
+      MSSQL_DB: mssqldocker
+      MSSQL_USER: mssqldocker
+      MSSQL_PASSWORD: "yourStrong(!)Password"
+
+volumes:
+  mssqldata:
