@@ -1,5 +1,4 @@
 #!/bin/sh
-
 # wait for MSSQL server to start
 export STATUS=1
 i=0
