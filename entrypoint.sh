@@ -1,5 +1,6 @@
 #!/bin/sh
 
+sleep 10s
 # wait for MSSQL server to start
 export STATUS=1
 i=0
@@ -8,7 +9,7 @@ max_time=300
 while [ $STATUS -ne 0 ] && [ $i -lt $max_time ]; do
   i=$((i + 1))
   echo "Trying to connect to $MSSQL_HOST (#$i)"
-  /opt/mssql-tools/bin/sqlcmd -t 1 -S "$MSSQL_HOST" -U "$MSSQL_USER" -P "$SA_PASSWORD" -Q "select 1" >>/dev/null
+  /opt/mssql-tools/bin/sqlcmd -t 1 -S "$MSSQL_HOST" -U "$MSSQL_USER" -P "$MSSQL_PASSWORD" -Q "select 1" >>/dev/null
   STATUS=$?
   sleep 1
 done

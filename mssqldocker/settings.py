@@ -73,7 +73,7 @@ WSGI_APPLICATION = 'mssqldocker.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': os.environ.get('MSSQL_ENGINE', "django.db.backends.sqlite3"),
-        'NAME': os.environ.get("DB_NAME", "db.sqlite3"),
+        'NAME': os.environ.get("MSSQL_DB", "db.sqlite3"),
 
         'USER': os.environ.get("MSSQL_USER", "sa"),
         'PASSWORD': os.environ.get("MSSQL_PASSWORD", "veryBadPassword@idiot.com"),
@@ -82,12 +82,10 @@ DATABASES = {
         'PORT': os.environ.get("MSSQL_PORT", 1433),
 
         'OPTIONS': {
-            'driver': os.environ.get("MSSQL_PORT_DRIVER", "ODBC Driver 17 for SQL Server"),
+            'driver': os.environ.get("MSSQL_DRIVER", "ODBC Driver 17 for SQL Server"),
         },
     },
 }
-
-print(DATABASES)
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators

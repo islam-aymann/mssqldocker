@@ -1,5 +1,8 @@
 version: "3.9"
 
+volumes:
+  mssqldata: {}
+
 services:
   web:
     build: .
@@ -12,12 +15,14 @@ services:
     volumes:
       - .:/opt/project
     env_file:
-      - ./.env/.dev
+      - ./.envs/.django
+      - ./.envs/.mssql
 
   db:
     image: islamusayman95/mssqldocker:latest
     ports:
       - "1433:1433"
-
+    volumes:
+      - mssqldata:/var/opt/mssql
     env_file:
-      - ./.env/.dev
+      - ./.envs/.mssql
