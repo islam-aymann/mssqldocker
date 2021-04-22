@@ -19,7 +19,7 @@ if [ $STATUS -ne 0 ]; then
   exit 1
 fi
 
-echo "MSSQL Server is ready. $i seconds."
+echo "MSSQL Server is up. $i seconds."
 
 echo "Trying to create $MSSQL_DB database using sa user."
 /opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P "$SA_PASSWORD" -d master -Q "CREATE DATABASE [$MSSQL_DB]"
